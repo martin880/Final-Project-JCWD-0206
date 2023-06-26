@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
 	const token = sequelize.define(
-		"Token", //nama table
+		"Token",
 		{
 			token: {
 				type: Sequelize.STRING,
