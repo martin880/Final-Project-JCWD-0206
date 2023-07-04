@@ -31,89 +31,89 @@ const productControllers = {
 			});
 		}
 	},
-	getProduct: async (req, res) => {
-		try {
-			const { category_id, search } = req.query;
-			const Clause = {};
-			if (category_id) {
-				Clause.category_id = category_id;
-			}
-			if (search) {
-				Clause.name = {
-					[Op.like]: `%${search}%`,
-				};
-			}
-			const products = await db.Product.findAll({
-				where: Clause,
-			});
-			res.send({
-				products: products,
-			});
-		} catch (err) {
-			console.log(err);
-			res.status(500).send({
-				message: err.message,
-			});
-		}
-	},
-	getProductDraft: async (req, res) => {
-		try {
-			const { limit, offset, column, sort, category_id, search } = req.query;
-			const whereClause = {};
-			let totalCount;
-			let totalPages;
-			let orderClause;
-			if (category_id) {
-				whereClause.category_id = category_id;
-			}
-			if (search) {
-				whereClause.name = {
-					[Op.like]: `%${search}%`,
-				};
-			}
+	// getProduct: async (req, res) => {
+	// 	try {
+	// 		const { category_id, search } = req.query;
+	// 		const Clause = {};
+	// 		if (category_id) {
+	// 			Clause.category_id = category_id;
+	// 		}
+	// 		if (search) {
+	// 			Clause.name = {
+	// 				[Op.like]: `%${search}%`,
+	// 			};
+	// 		}
+	// 		const products = await db.Product.findAll({
+	// 			where: Clause,
+	// 		});
+	// 		res.send({
+	// 			products: products,
+	// 		});
+	// 	} catch (err) {
+	// 		console.log(err);
+	// 		res.status(500).send({
+	// 			message: err.message,
+	// 		});
+	// 	}
+	// },
+	// getProductDraft: async (req, res) => {
+	// 	try {
+	// 		const { limit, offset, column, sort, category_id, search } = req.query;
+	// 		const whereClause = {};
+	// 		let totalCount;
+	// 		let totalPages;
+	// 		let orderClause;
+	// 		if (category_id) {
+	// 			whereClause.category_id = category_id;
+	// 		}
+	// 		if (search) {
+	// 			whereClause.name = {
+	// 				[Op.like]: `%${search}%`,
+	// 			};
+	// 		}
 
-			if (column === "category") {
-				orderClause = [[db.Category, column, sort]];
-			} else if (column) {
-				orderClause = [[column, sort]];
-			}
+	// 		if (column === "category") {
+	// 			orderClause = [[db.Category, column, sort]];
+	// 		} else if (column) {
+	// 			orderClause = [[column, sort]];
+	// 		}
 
-			if (limit) {
-				totalCount = await db.Product.count({
-					include: [
-						{
-							model: db.Category,
-						},
-					],
-					where: whereClause,
-				});
-				totalPages = Math.ceil(totalCount / limit);
-			}
+	// 		if (limit) {
+	// 			totalCount = await db.Product.count({
+	// 				include: [
+	// 					{
+	// 						model: db.Category,
+	// 					},
+	// 				],
+	// 				where: whereClause,
+	// 			});
+	// 			totalPages = Math.ceil(totalCount / limit);
+	// 		}
 
-			const products = await db.Product.findAll({
-				include: [
-					{
-						model: db.Category,
-					},
-				],
-				where: whereClause,
-				order: orderClause,
-				limit: limit ? Number(limit) : null,
-				offset: offset ? Number(offset) : null,
-			});
-			console.log(products);
-			res.send({
-				products: products,
-				totalPages: totalPages,
-				totalCount: totalCount,
-			});
-		} catch (err) {
-			console.log(err);
-			res.status(500).send({
-				message: err.message,
-			});
-		}
-	},
+	// 		const products = await db.Product.findAll({
+	// 			include: [
+	// 				{
+	// 					model: db.Category,
+	// 				},
+	// 			],
+	// 			where: whereClause,
+	// 			order: orderClause,
+	// 			limit: limit ? Number(limit) : null,
+	// 			offset: offset ? Number(offset) : null,
+	// 		});
+	// 		console.log(products);
+	// 		res.send({
+	// 			products: products,
+	// 			totalPages: totalPages,
+	// 			totalCount: totalCount,
+	// 		});
+	// 	} catch (err) {
+	// 		console.log(err);
+	// 		res.status(500).send({
+	// 			message: err.message,
+	// 		});
+	// 	}
+	// },
 	deleteProduct: async (req, res) => {
 		try {
 			await db.Product.destroy({
