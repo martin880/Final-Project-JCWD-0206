@@ -16,10 +16,11 @@ const productControllers = {
 	insert: async (req, res) => {
 		try {
 			console.log(req.file);
-			const { name, price, category_id } = req.body;
+			const { name, details, price, category_id } = req.body;
 			const { filename } = req.file;
 			await db.Product.create({
 				name,
+				details,
 				price,
 				img_url: process.env.product_img + filename,
 				category_id,
@@ -131,11 +132,12 @@ const productControllers = {
 	},
 	editProduct: async (req, res) => {
 		try {
-			const { name, price, category_id } = req.body;
+			const { name, details, price, category_id } = req.body;
 			const { filename } = req.file;
 			await db.Product.update(
 				{
 					name,
+					details,
 					price,
 					category_id,
 					img_url: process.env.product_img + filename,
