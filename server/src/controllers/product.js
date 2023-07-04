@@ -42,7 +42,7 @@ const productControllers = {
 					[Op.like]: `%${search}%`,
 				};
 			}
-			const products = await db.P.findAll({
+			const products = await db.Product.findAll({
 				where: Clause,
 			});
 			res.send({
