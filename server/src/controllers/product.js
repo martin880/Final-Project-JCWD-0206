@@ -21,7 +21,7 @@ const productControllers = {
 			await db.Product.create({
 				name,
 				price,
-				img_url: process.env.url_img + filename,
+				img_url: process.env.product_img + filename,
 				category_id,
 			}).then((result) => res.send(result));
 		} catch (err) {
@@ -138,7 +138,7 @@ const productControllers = {
 					name,
 					price,
 					category_id,
-					img_url: process.env.url_img + filename,
+					img_url: process.env.product_img + filename,
 				},
 				{
 					where: {
