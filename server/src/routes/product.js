@@ -3,8 +3,8 @@ const router = express.Router();
 const productControllers = require("../controllers").productControllers;
 const { fileUploader, upload } = require("../middlewares/multer");
 
-router.get("/", productControllers.getProduct);
-router.get("/Draft", productControllers.getProductDraft);
+// router.get("/", productControllers.getProduct);
+// router.get("/Draft", productControllers.getProductDraft);
 router.get("/all", productControllers.getAll);
 router.delete("/:id", productControllers.deleteProduct);
 router.post(
