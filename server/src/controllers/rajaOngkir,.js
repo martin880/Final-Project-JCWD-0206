@@ -11,9 +11,9 @@ const rajaOngkirContorller = {
 					},
 				}
 			);
-
 			res.send(result.data);
 		} catch (err) {
+			console.log(err);
 			res.status(500).send({
 				message: err.message,
 			});
@@ -32,24 +32,25 @@ const rajaOngkirContorller = {
 
 			res.send(result.data);
 		} catch (err) {
+			console.log(err);
 			res.status(500).send({
 				message: err.message,
 			});
 		}
 	},
-	getCitybyId: async (req, res) => {
+	getCost: async (req, res) => {
 		try {
-			const { id } = req.params;
-			const result = await axios.get(
-				`https://api.rajaongkir.com/starter/city?province=${id}`,
+			const { origin, destination, weight, courier } = req.body;
+			const result = await axios.post(
+				"https://api.rajaongkir.com/starter/cost",
 				{
 					headers: {
 						key: "372e0adb26e2feae1f4ccf3c2f1ccb3a",
 					},
 				}
 			);
-			res.send(result.data);
 		} catch (err) {
+			console.log(err);
 			res.status(500).send({
 				message: err.message,
 			});
