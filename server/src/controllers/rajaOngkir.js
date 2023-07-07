@@ -1,4 +1,5 @@
 const axios = require("axios");
+const { response } = require("express");
 
 const rajaOngkirContorller = {
 	getAllProvince: async (req, res) => {
@@ -47,8 +48,15 @@ const rajaOngkirContorller = {
 					headers: {
 						key: "372e0adb26e2feae1f4ccf3c2f1ccb3a",
 					},
+					params: {
+						origin: origin,
+						destination: destination,
+						weight: weight,
+						courier: courier,
+					},
 				}
 			);
+			res.send(result.data);
 		} catch (err) {
 			console.log(err);
 			res.status(500).send({
