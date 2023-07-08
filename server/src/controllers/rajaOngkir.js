@@ -45,20 +45,19 @@ const rajaOngkirContorller = {
 			const result = await axios.post(
 				"https://api.rajaongkir.com/starter/cost",
 				{
+					origin: origin,
+					destination: destination,
+					weight: weight,
+					courier: courier,
+				},
+				{
 					headers: {
 						key: "372e0adb26e2feae1f4ccf3c2f1ccb3a",
-					},
-					params: {
-						origin: origin,
-						destination: destination,
-						weight: weight,
-						courier: courier,
 					},
 				}
 			);
 			res.send(result.data);
 		} catch (err) {
-			console.log(err);
 			res.status(500).send({
 				message: err.message,
 			});
