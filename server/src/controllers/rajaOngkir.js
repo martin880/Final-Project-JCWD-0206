@@ -29,7 +29,6 @@ const rajaOngkirContorller = {
 					},
 				}
 			);
-
 			res.send(result.data);
 		} catch (err) {
 			console.log(err);
