@@ -61,6 +61,36 @@ const rajaOngkirContorller = {
 			});
 		}
 	},
+	getLocation: async (req, res) => {
+		try {
+			const address = req.params.address;
+			const encodedAddress = encodeURIComponent(address);
+			const apiKey = "9d90da72d810405f81098da816171213";
+
+			const response = await axios.get(
+				`https://api.opencagedata.com/geocode/v1/json?q=${encodedAddress}&key=${apiKey}`
+			);
+			const { results } = response.data;
+			if (results.length > 0) {
+				const { geometry } = results[0];
+				const { lat, lng } = geometry;
+
+				res.status(200).send({
+					address: address,
+					latitude: lat,
+					longitude: lng,
+				});
+			} else {
+				res.status(404).send({
+					message: "Location not found",
+				});
+			}
+		} catch (err) {
+			res.status(500).send({
+				message: err.message,
+			});
+		}
+	},
 };
 
 module.exports = rajaOngkirContorller;

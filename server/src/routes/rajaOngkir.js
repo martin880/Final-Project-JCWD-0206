@@ -5,5 +5,6 @@ const rajaOngkirContorller = require("../controllers").rajaOngkirContorller;
 router.get("/province/", rajaOngkirContorller.getAllProvince);
 router.get("/city/", rajaOngkirContorller.getAllCity);
 router.post("/cost/", rajaOngkirContorller.getCost);
+router.get("/geocode/:address", rajaOngkirContorller.getLocation);
 
 module.exports = router;
