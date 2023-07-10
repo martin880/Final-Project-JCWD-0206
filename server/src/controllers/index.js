@@ -1,7 +1,5 @@
-const productControllers = require("./product");
-const rajaOngkirContorller = require("./rajaOngkir");
+const rajaOngkirController = require("./rajaOngkirController");
 
 module.exports = {
-	productControllers,
-	rajaOngkirContorller,
+	rajaOngkirController,
 };
