@@ -1,4 +1,4 @@
-import Test from "../components/testComponent";
+import Test from "../components/test";
 
 export default function HomePage() {
 	return (
