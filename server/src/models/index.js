@@ -47,4 +47,18 @@ Object.keys(db).forEach((modelName) => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+db.addresses = require("./address")(sequelize, Sequelize);
+db.carts = require("./cart");
+db.categories = require("./category");
+db.orders = require("./order");
+db.orderDetails = require("./orderDetail");
+db.products = require("./product");
+db.productImages = require("./productImage");
+db.stocks = require("./stock");
+db.stockHistories = require("./stockHistorie");
+db.stockMutation = require("./stockMutation");
+db.tokens = require("./token");
+db.users = require("./user");
+db.warehouses = require("./warehouse");
+
 module.exports = db;
